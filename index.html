@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NCES EduLocator — Search 127,000+ public schools, private schools, and colleges across the United States." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1B2D5B" />
+  <title>NCES EduLocator | National Center for Education Statistics</title>
+
+  <!-- Canonical URL: replace with your final production domain -->
+  <link rel="canonical" href="https://example.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NCES EduLocator | Search for Schools and Colleges" />
+  <meta property="og:description" content="Search public schools, private schools, and colleges across the United States using NCES-style data exploration." />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://example.com/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NCES EduLocator | Search for Schools and Colleges" />
+  <meta name="twitter:description" content="Interactive school and college finder with filters, state map, compare view, and export." />
+  <meta name="twitter:image" content="https://example.com/og-image.png" />
+
+  <!-- Icons + PWA metadata -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Google Fonts: Merriweather (headings) + Public Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "NCES EduLocator",
+      "url": "https://example.com/",
+      "description": "Search and compare schools and colleges across the United States.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "National Center for Education Statistics"
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+<!-- Hidden fType field (JS sync source) -->
+<input id="fType" type="hidden" value="" />
+
+<!-- ═══════════════════════════════════════════════════════
+     OFFICIAL GOVERNMENT BANNER
+═══════════════════════════════════════════════════════ -->
+<div class="gov-banner-bar" role="banner">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span style="display:flex;align-items:center;gap:6px;">
+      <!-- US Flag SVG inline (simplified) -->
+      <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true" style="flex-shrink:0;">
+        <rect width="18" height="12" fill="#B22234"/>
+        <rect y="1" width="18" height="1" fill="#fff"/>
+        <rect y="3" width="18" height="1" fill="#fff"/>
+        <rect y="5" width="18" height="1" fill="#fff"/>
+        <rect y="7" width="18" height="1" fill="#fff"/>
+        <rect y="9" width="18" height="1" fill="#fff"/>
+        <rect y="11" width="18" height="1" fill="#fff"/>
+        <rect width="7" height="7" fill="#3C3B6E"/>
+        <g fill="#fff" font-size="3" font-family="sans-serif">
+          <text x="1" y="3">★★★</text><text x="1" y="6">★★★</text>
+        </g>
+      </svg>
+      An official website of the United States government
+    </span>
+    <button id="bannerToggle" class="gov-banner-toggle" aria-expanded="false" aria-controls="bannerPanel">
+      Here's how you know ▾
+    </button>
+  </div>
+</div>
+<!-- Expandable "how you know" panel -->
+<div id="bannerPanel" class="gov-banner-panel" role="region" aria-label="Official website information">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div class="gov-panel-col">
+      <span class="icon">🔒</span>
+      <div>
+        <strong style="color:#1b1b1b;font-size:13px;">Official .gov websites use HTTPS</strong>
+        <p style="margin:4px 0 0;color:#444;font-size:12px;line-height:1.5;">A <strong>lock</strong> (<span style="font-family:monospace;">🔒</span>) or <strong>https://</strong> means you've safely connected to a .gov website. Share sensitive information only on official, secure websites.</p>
+      </div>
+    </div>
+    <div class="gov-panel-col">
+      <span class="icon">🏛️</span>
+      <div>
+        <strong style="color:#1b1b1b;font-size:13px;">Official websites use .gov</strong>
+        <p style="margin:4px 0 0;color:#444;font-size:12px;line-height:1.5;">A <strong>.gov</strong> website belongs to an official government organisation in the United States.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════ -->
+<nav class="site-nav" id="navbar" role="navigation" aria-label="Primary navigation">
+  <div class="site-nav-inner">
+    <a href="#" class="nav-brand" aria-label="NCES EduLocator home">
+      <div class="nav-seal" aria-hidden="true">
+        <i class="fas fa-landmark"></i>
+      </div>
+      <div>
+        <div class="nav-title">NCES EduLocator</div>
+        <div class="nav-subtitle">U.S. Department of Education</div>
+      </div>
+    </a>
+
+    <nav class="nav-links" aria-label="Site links">
+      <a href="#" class="nav-link active" aria-current="page">Home</a>
+      <a href="#mainContent" class="nav-link">Search</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="https://nces.ed.gov/" target="_blank" rel="noopener noreferrer" class="nav-link" title="NCES main website">
+        NCES.gov <i class="fas fa-external-link-alt" style="font-size:9px;opacity:.6;"></i>
+      </a>
+    </nav>
+
+    <div class="nav-actions">
+      <div style="display:flex;align-items:center;gap:6px;">
+        <div class="live-dot" aria-hidden="true"></div>
+        <span class="live-label">Live Data</span>
+      </div>
+      <span class="kbd-hint" title="Press / to focus search">/</span>
+      <span class="kbd-hint" title="Press ? for keyboard help">?</span>
+      <button id="searchBtn" class="nav-btn-primary" aria-label="Jump to search">
+        <i class="fas fa-search" style="margin-right:5px;"></i> Search
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="hero-section" aria-labelledby="heroTitle" role="main">
+  <div class="hero-inner">
+    <!-- Left: Headline + stats -->
+    <div class="hero-left reveal">
+      <div class="hero-badge">
+        <i class="fas fa-landmark" aria-hidden="true"></i>
+        National Center for Education Statistics
+      </div>
+      <h1 class="hero-title" id="heroTitle">
+        Search for<br><span>Schools &amp; Colleges</span><br>Across America
+      </h1>
+      <p class="hero-sub">
+        Explore over 127,000 public schools, private schools, and colleges
+        in all 50 states and territories — from the NCES official database.
+      </p>
+      <div class="hero-stats-inline">
+        <div class="hero-stat">
+          <div class="hero-stat-num">87K+</div>
+          <div class="hero-stat-lbl">Public Schools</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">33K+</div>
+          <div class="hero-stat-lbl">Private Schools</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6K+</div>
+          <div class="hero-stat-lbl">Colleges</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">49M+</div>
+          <div class="hero-stat-lbl">Students</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Search card -->
+    <div class="hero-right reveal">
+      <div class="hero-card" role="search" aria-label="Quick institution search">
+        <div class="hero-card-header">
+          <span class="hero-card-title"><i class="fas fa-search" style="margin-right:6px;opacity:.7;"></i>Quick Search</span>
+          <span class="hero-card-tag">Free Tool</span>
+        </div>
+        <div class="hero-card-body">
+          <div class="hero-field">
+            <label for="hName">Institution Name</label>
+            <input id="hName" class="hero-inp" type="text" placeholder="e.g. Harvard, Lincoln Elementary…" autocomplete="off" />
+          </div>
+          <div class="hero-row">
+            <div class="hero-field">
+              <label for="hCity">City</label>
+              <input id="hCity" class="hero-inp" type="text" placeholder="e.g. Boston" autocomplete="off" />
+            </div>
+            <div class="hero-field">
+              <label for="hState">State</label>
+              <select id="hState" class="hero-inp">
+                <option value="">All States</option>
+              </select>
+            </div>
+          </div>
+          <button id="heroSearchBtn" class="hero-search-btn" aria-label="Run search">
+            <i class="fas fa-search" style="margin-right:6px;"></i> Find Institutions
+          </button>
+          <div class="hero-quick" aria-label="Popular searches">
+            <span class="hero-quick-lbl">Try:</span>
+            <button class="quick-pill" data-q="MIT" title="Search MIT">MIT</button>
+            <button class="quick-pill" data-type="college" title="Browse colleges">Colleges</button>
+            <button class="quick-pill" data-q="Science" title="Search for science schools">Science</button>
+            <button class="quick-pill" data-type="private" title="Browse private schools">Private</button>
+            <button class="quick-pill" data-q="Harvard" title="Search Harvard">Harvard</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     ANIMATED STATS BAR
+═══════════════════════════════════════════════════════ -->
+<div class="stats-bar" role="region" aria-label="Key statistics">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-icon">🏫</div>
+      <div class="stat-num stat-blue"><span data-target="87652">0</span></div>
+      <div class="stat-lbl">Public Schools</div>
+      <div class="stat-note">Source: NCES, CCD 2024</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-icon">🎓</div>
+      <div class="stat-num stat-navy"><span data-target="33619">0</span></div>
+      <div class="stat-lbl">Private Schools</div>
+      <div class="stat-note">Source: NCES, PSS 2024</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-icon">🏛️</div>
+      <div class="stat-num stat-gold"><span data-target="6093">0</span></div>
+      <div class="stat-lbl">Degree-Granting Colleges</div>
+      <div class="stat-note">Source: NCES, IPEDS 2024</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-icon">👩‍🎓</div>
+      <div class="stat-num stat-red"><span data-target="49600000">0</span></div>
+      <div class="stat-lbl">Students Enrolled</div>
+      <div class="stat-note">PreK–Grade 12 + Higher Ed</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN LAYOUT: SIDEBAR + RESULTS
+═══════════════════════════════════════════════════════ -->
+<div class="main-layout" id="mainContent">
+
+  <!-- ── LEFT: FILTER SIDEBAR ── -->
+  <aside class="filter-sidebar" id="filterSidebar" aria-label="Search filters">
+
+    <div class="sidebar-header">
+      <h2><i class="fas fa-sliders-h" style="margin-right:7px;opacity:.7;"></i>Filter &amp; Search</h2>
+      <button id="clearFilters" class="sidebar-clear-btn" title="Clear all filters">Clear All</button>
+    </div>
+
+    <!-- Recent searches (dynamic) -->
+    <div id="recentRow" aria-live="polite" aria-label="Recent searches"></div>
+
+    <!-- Name search with autocomplete -->
+    <div class="filter-group open">
+      <div class="filter-group-header" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter')this.click()">
+        <span class="filter-group-title">Institution Name</span>
+        <i class="fas fa-chevron-down filter-group-icon"></i>
+      </div>
+      <div class="filter-group-body">
+        <div class="filter-group-inner">
+          <div class="ac-wrap" id="acWrap" role="combobox" aria-expanded="false" aria-haspopup="listbox">
+            <input id="fName" class="sidebar-input" type="text" placeholder="Search by name…"
+              autocomplete="off" aria-label="Filter by institution name" aria-autocomplete="list"
+              aria-controls="acBox" style="margin-bottom:0;" />
+            <div id="acBox" class="ac-box hidden" role="listbox" aria-label="Name suggestions"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Institution type -->
+    <div class="filter-group open">
+      <div class="filter-group-header" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter')this.click()">
+        <span class="filter-group-title">Institution Type</span>
+        <i class="fas fa-chevron-down filter-group-icon"></i>
+      </div>
+      <div class="filter-group-body">
+        <div class="filter-group-inner" style="padding-bottom:10px;">
+          <div id="typeRadioGroup" class="type-radio-group" role="radiogroup" aria-label="Institution type"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location filters -->
+    <div class="filter-group open">
+      <div class="filter-group-header" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter')this.click()">
+        <span class="filter-group-title">Location</span>
+        <i class="fas fa-chevron-down filter-group-icon"></i>
+      </div>
+      <div class="filter-group-body">
+        <div class="filter-group-inner">
+          <div class="sidebar-input-label">City</div>
+          <input id="fCity" class="sidebar-input" type="text" placeholder="e.g. Chicago" autocomplete="off" aria-label="Filter by city" />
+          <div class="sidebar-input-label">State</div>
+          <select id="fState" class="sidebar-input" aria-label="Filter by state">
+            <option value="">All States &amp; Territories</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZIP radius -->
+    <div class="filter-group">
+      <div class="filter-group-header" role="button" tabindex="0" onkeydown="if(event.key==='Enter')this.click()">
+        <span class="filter-group-title">Proximity Search</span>
+        <i class="fas fa-chevron-down filter-group-icon"></i>
+      </div>
+      <div class="filter-group-body">
+        <div class="filter-group-inner">
+          <div class="sidebar-input-label">
+            ZIP Code
+            <span class="tip-wrap">
+              <i class="fas fa-question-circle" style="font-size:11px;color:var(--text-muted);"></i>
+              <span class="tip-box">Enter a 5-digit ZIP code to search by proximity</span>
+            </span>
+          </div>
+          <input id="fZip" class="sidebar-input" type="text" maxlength="5" placeholder="e.g. 02139" autocomplete="off" aria-label="Filter by ZIP code" />
+          <div class="sidebar-input-label">Search Radius</div>
+          <select id="fRadius" class="sidebar-input" aria-label="Select search radius in miles">
+            <option value="">Select radius</option>
+            <option value="10">Within 10 miles</option>
+            <option value="25">Within 25 miles</option>
+            <option value="50">Within 50 miles</option>
+            <option value="100">Within 100 miles</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sort -->
+    <div class="filter-group">
+      <div class="filter-group-header" role="button" tabindex="0" onkeydown="if(event.key==='Enter')this.click()">
+        <span class="filter-group-title">Sort Results</span>
+        <i class="fas fa-chevron-down filter-group-icon"></i>
+      </div>
+      <div class="filter-group-body">
+        <div class="filter-group-inner">
+          <select id="fSort" class="sidebar-input" aria-label="Sort results by">
+            <option value="name">Name (A–Z)</option>
+            <option value="enroll">Enrollment (largest first)</option>
+            <option value="est">Year Established (oldest first)</option>
+            <option value="state">State (A–Z)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive state map -->
+    <div class="filter-group open">
+      <div class="filter-group-header" role="button" tabindex="0" aria-expanded="true" onkeydown="if(event.key==='Enter')this.click()">
+        <span class="filter-group-title">Browse by State</span>
+        <i class="fas fa-chevron-down filter-group-icon"></i>
+      </div>
+      <div class="filter-group-body">
+        <div class="filter-group-inner" style="padding-bottom:14px;">
+          <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px;line-height:1.5;">
+            Click a state to filter. Darker tiles = more institutions in our data.
+          </p>
+          <div id="stateCartogram" aria-label="US state map — click to filter by state" role="group"></div>
+          <div style="display:flex;gap:6px;margin-top:8px;align-items:center;">
+            <div style="width:10px;height:10px;border-radius:2px;background:#C8D6E8;"></div>
+            <span style="font-size:9px;color:var(--text-muted);">Few</span>
+            <div style="width:10px;height:10px;border-radius:2px;background:#4A8CC8;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#005EA2;"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:#1B2D5B;"></div>
+            <span style="font-size:9px;color:var(--text-muted);">Many</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data note -->
+    <div style="padding:12px 16px;background:var(--bg);border-top:1px solid var(--border);">
+      <p style="font-size:10px;color:var(--text-muted);margin:0;line-height:1.6;">
+        <i class="fas fa-info-circle" style="color:var(--blue);margin-right:4px;"></i>
+        <strong>Data source:</strong> NCES Common Core of Data (CCD), Private School Survey (PSS),
+        and Integrated Postsecondary Education Data System (IPEDS), 2024.
+        Sample data shown for demonstration.
+      </p>
+    </div>
+  </aside>
+
+  <!-- ── RIGHT: RESULTS PANEL ── -->
+  <div class="results-panel" id="resultsPanel" role="region" aria-label="Search results">
+
+    <!-- Type tabs -->
+    <div class="type-tabs" role="tablist" aria-label="Filter by institution type">
+      <button class="tab-btn active" role="tab" data-tab="all" onclick="setTab('all')" aria-selected="true">
+        <i class="fas fa-layer-group" aria-hidden="true"></i>
+        All <span class="tab-count" id="tc-all">–</span>
+      </button>
+      <button class="tab-btn" role="tab" data-tab="college" onclick="setTab('college')" aria-selected="false">
+        <i class="fas fa-university" aria-hidden="true"></i>
+        Colleges <span class="tab-count" id="tc-college">–</span>
+      </button>
+      <button class="tab-btn" role="tab" data-tab="public" onclick="setTab('public')" aria-selected="false">
+        <i class="fas fa-school" aria-hidden="true"></i>
+        Public <span class="tab-count" id="tc-public">–</span>
+      </button>
+      <button class="tab-btn" role="tab" data-tab="private" onclick="setTab('private')" aria-selected="false">
+        <i class="fas fa-award" aria-hidden="true"></i>
+        Private <span class="tab-count" id="tc-private">–</span>
+      </button>
+    </div>
+
+    <!-- Results toolbar -->
+    <div class="results-toolbar" role="toolbar" aria-label="Results options">
+      <div>
+        <div class="results-count">
+          <span id="resultCount">0</span> institutions found
+        </div>
+        <div class="results-source">
+          <i class="fas fa-database" style="font-size:10px;margin-right:3px;color:var(--text-muted);"></i>
+          NCES EduLocator · Data updated January 2024
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <select class="sort-select" id="fSortInline" aria-label="Sort results">
+          <option value="name">Name A–Z</option>
+          <option value="enroll">Enrollment ↓</option>
+          <option value="est">Oldest first</option>
+          <option value="state">State A–Z</option>
+        </select>
+        <button class="tool-btn active" data-view="grid" onclick="setView('grid')" title="Grid view" aria-label="Switch to grid view" aria-pressed="true">
+          <i class="fas fa-th-large" aria-hidden="true"></i>
+        </button>
+        <button class="tool-btn" data-view="list" onclick="setView('list')" title="List view" aria-label="Switch to list view" aria-pressed="false">
+          <i class="fas fa-list" aria-hidden="true"></i>
+        </button>
+        <button class="tool-btn" data-view="table" onclick="setView('table')" title="Table view" aria-label="Switch to table view" aria-pressed="false">
+          <i class="fas fa-table" aria-hidden="true"></i>
+        </button>
+        <button class="tool-btn no-print" id="printBtn" title="Print results" aria-label="Print results">
+          <i class="fas fa-print" aria-hidden="true"></i>
+        </button>
+        <button class="tool-btn no-print" id="exportBtn" title="Export CSV" aria-label="Export CSV">
+          <i class="fas fa-file-csv" aria-hidden="true"></i>
+        </button>
+        <button class="tool-btn no-print" id="helpBtn" title="Keyboard shortcuts" aria-label="Keyboard shortcuts">
+          <i class="fas fa-keyboard" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live dashboard -->
+    <section class="data-dashboard" aria-label="Live result metrics">
+      <div class="dd-metrics">
+        <div class="dd-item">
+          <span class="dd-label">Visible Results</span>
+          <strong id="ddCount">0</strong>
+        </div>
+        <div class="dd-item">
+          <span class="dd-label">Enrollment Total</span>
+          <strong id="ddEnroll">0</strong>
+        </div>
+        <div class="dd-item">
+          <span class="dd-label">Faculty Total</span>
+          <strong id="ddFaculty">0</strong>
+        </div>
+      </div>
+      <div class="dd-distribution">
+        <div id="distBar" class="dist-bar" aria-hidden="true"></div>
+        <div id="distLegend" class="dist-legend" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Active filter chips -->
+    <div id="activeChips" class="chips-row" aria-live="polite" aria-label="Active filters"></div>
+
+    <!-- Results grid (updated by JS) -->
+    <div id="resultsGrid" class="results-grid" role="list" aria-live="polite" aria-label="Institution results"></div>
+
+    <!-- No results state -->
+    <div id="noResults" class="hidden" aria-live="assertive"></div>
+
+    <!-- Pagination -->
+    <nav id="pagination" aria-label="Pagination" role="navigation"></nav>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ABOUT SECTION
+═══════════════════════════════════════════════════════ -->
+<section class="about-section" id="about" aria-labelledby="aboutTitle">
+  <div class="about-inner">
+    <!-- Left: text -->
+    <div class="reveal">
+      <p class="about-kicker"><i class="fas fa-landmark" aria-hidden="true"></i> About This Tool</p>
+      <h2 class="about-title" id="aboutTitle">
+        <em>Official data</em> from the<br>nation's education authority
+      </h2>
+      <p class="about-text">
+        The NCES EduLocator is powered by three authoritative federal data collections:
+        the Common Core of Data (public schools), Private School Survey (private schools),
+        and the Integrated Postsecondary Education Data System (colleges and universities).
+      </p>
+      <p class="about-text">
+        All records are verified and updated annually by the National Center for Education
+        Statistics — a part of the U.S. Department of Education's Institute of Education Sciences.
+      </p>
+      <div class="about-grid">
+        <div class="about-stat-box">
+          <div class="about-stat-num">1867</div>
+          <div class="about-stat-lbl">NCES Established</div>
+        </div>
+        <div class="about-stat-box">
+          <div class="about-stat-num">156 yrs</div>
+          <div class="about-stat-lbl">Serving America</div>
+        </div>
+        <div class="about-stat-box">
+          <div class="about-stat-num">50</div>
+          <div class="about-stat-lbl">States Covered</div>
+        </div>
+        <div class="about-stat-box">
+          <div class="about-stat-num">100%</div>
+          <div class="about-stat-lbl">Free to Access</div>
+        </div>
+      </div>
+    </div>
+    <!-- Right: feature list -->
+    <div class="about-features reveal">
+      <div class="about-feature">
+        <div class="about-feature-icon" style="background:rgba(0,94,162,.25);color:#7EB1D8;">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div class="about-feature-title">Instant Live Search</div>
+          <div class="about-feature-text">Results update as you type — no waiting, no page reloads. Search across name, city, state, and institution type simultaneously.</div>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon" style="background:rgba(28,128,64,.25);color:#68C490;">
+          <i class="fas fa-map" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div class="about-feature-title">Interactive State Map</div>
+          <div class="about-feature-text">Click any state on our choropleth tile map to instantly filter results. Tile shading reflects institution density — darker means more.</div>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon" style="background:rgba(155,28,46,.25);color:#E07C8A;">
+          <i class="fas fa-balance-scale" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div class="about-feature-title">Side-by-Side Comparison</div>
+          <div class="about-feature-text">Select up to 3 institutions and compare enrolment, faculty, student-to-faculty ratios, and more in one clear table.</div>
+        </div>
+      </div>
+      <div class="about-feature">
+        <div class="about-feature-icon" style="background:rgba(139,105,20,.25);color:#D4A84B;">
+          <i class="fas fa-table" aria-hidden="true"></i>
+        </div>
+        <div>
+          <div class="about-feature-title">Three Result Views</div>
+          <div class="about-feature-text">Switch between card grid, compact list, and sortable data table — whichever suits your workflow best.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+
+    <!-- Official agency row -->
+    <div style="display:flex;align-items:center;gap:16px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:32px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:44px;height:44px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🏛️</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff;">U.S. Department of Education</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);">Institute of Education Sciences (IES)</div>
+        </div>
+      </div>
+      <div style="width:1px;height:32px;background:rgba(255,255,255,.15);"></div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.7);">National Center for Education Statistics</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Established 1867 · Washington, D.C. 20208</div>
+      </div>
+      <div style="margin-left:auto;">
+        <a href="https://nces.ed.gov/" target="_blank" rel="noopener noreferrer"
+           style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:7px 14px;color:rgba(255,255,255,.75);font-size:12px;font-weight:600;text-decoration:none;transition:all .15s;"
+           onmouseover="this.style.background='rgba(255,255,255,.15)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
+          <i class="fas fa-external-link-alt" style="font-size:10px;"></i> Visit NCES.gov
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <!-- Brand -->
+      <div>
+        <div class="footer-brand-name">NCES EduLocator</div>
+        <p class="footer-brand-desc">
+          A public resource of the National Center for Education Statistics (NCES),
+          part of the U.S. Department of Education's Institute of Education Sciences.
+          Data drawn from CCD, PSS, and IPEDS surveys — updated annually.
+        </p>
+        <div class="footer-seal">
+          <i class="fas fa-landmark" aria-hidden="true"></i>
+          <span>NCES · IES · U.S. Dept. of Education</span>
+        </div>
+      </div>
+
+      <!-- NCES Data Tools -->
+      <div>
+        <div class="footer-col-title">NCES Data Tools</div>
+        <ul class="footer-links">
+          <li><a href="https://nces.ed.gov/collegenavigator/" target="_blank" rel="noopener noreferrer">College Navigator</a></li>
+          <li><a href="https://nces.ed.gov/ccd/elsi/" target="_blank" rel="noopener noreferrer">Elementary/Secondary Info System</a></li>
+          <li><a href="https://nces.ed.gov/ipeds/use-the-data" target="_blank" rel="noopener noreferrer">IPEDS Data Tools</a></li>
+          <li><a href="https://nces.ed.gov/datalab/" target="_blank" rel="noopener noreferrer">DataLab</a></li>
+          <li><a href="https://www.nationsreportcard.gov/data_tools.aspx" target="_blank" rel="noopener noreferrer">NAEP Data Tools</a></li>
+          <li><a href="https://nces.ed.gov/programs/edge/" target="_blank" rel="noopener noreferrer">EDGE Program</a></li>
+        </ul>
+      </div>
+
+      <!-- Surveys & Programs -->
+      <div>
+        <div class="footer-col-title">Surveys &amp; Programs</div>
+        <ul class="footer-links">
+          <li><a href="https://nces.ed.gov/ccd/" target="_blank" rel="noopener noreferrer">Common Core of Data (CCD)</a></li>
+          <li><a href="https://nces.ed.gov/pss/" target="_blank" rel="noopener noreferrer">Private School Survey (PSS)</a></li>
+          <li><a href="https://nces.ed.gov/ipeds/" target="_blank" rel="noopener noreferrer">IPEDS — Postsecondary</a></li>
+          <li><a href="https://nces.ed.gov/nationsreportcard/" target="_blank" rel="noopener noreferrer">NAEP — Nation's Report Card</a></li>
+          <li><a href="https://nces.ed.gov/fastfacts/" target="_blank" rel="noopener noreferrer">Fast Facts</a></li>
+          <li><a href="https://nces.ed.gov/programs/digest/" target="_blank" rel="noopener noreferrer">Digest of Education Statistics</a></li>
+        </ul>
+      </div>
+
+      <!-- Policies & Agency -->
+      <div>
+        <div class="footer-col-title">Policies &amp; Agency</div>
+        <ul class="footer-links">
+          <li><a href="https://nces.ed.gov/national-center-education-statistics-nces/about" target="_blank" rel="noopener noreferrer">About NCES</a></li>
+          <li><a href="https://ies.ed.gov/" target="_blank" rel="noopener noreferrer">IES — Institute of Education Sciences</a></li>
+          <li><a href="https://www.ed.gov/" target="_blank" rel="noopener noreferrer">U.S. Department of Education</a></li>
+          <li><a href="https://nces.ed.gov/about/disclaimer" target="_blank" rel="noopener noreferrer">Disclaimer &amp; Policies</a></li>
+          <li><a href="https://www.ed.gov/laws-and-policy/civil-rights-laws/section-508" target="_blank" rel="noopener noreferrer">Accessibility / Section 508</a></li>
+          <li><a href="https://www.ed.gov/foia" target="_blank" rel="noopener noreferrer">FOIA Requests</a></li>
+          <li><a href="https://nces.ed.gov/about/contactus.asp" target="_blank" rel="noopener noreferrer">Contact NCES</a></li>
+          <li><a href="https://www.usa.gov/" target="_blank" rel="noopener noreferrer">USA.gov</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span>
+        &copy; 2024 National Center for Education Statistics (NCES) &mdash;
+        U.S. Department of Education, Institute of Education Sciences &mdash;
+        400 Maryland Ave SW, Washington, D.C. 20202
+      </span>
+      <div class="footer-credits">
+        <span>Fonts: <a href="https://fonts.google.com/specimen/Merriweather" target="_blank" rel="noopener">Merriweather</a> &amp; <a href="https://fonts.google.com/specimen/Public+Sans" target="_blank" rel="noopener">Public Sans</a> (OFL)</span>
+        <span>Icons: <a href="https://fontawesome.com" target="_blank" rel="noopener">Font Awesome 6 Free</a> (CC BY 4.0)</span>
+        <span>Section 508 Compliant</span>
+        <span>This is a demonstration redesign — not an official NCES publication</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     DETAIL MODAL
+═══════════════════════════════════════════════════════ -->
+<div id="detailModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Institution details">
+  <div class="modal-box" id="modalBox">
+    <div id="modalInner"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     COMPARE MODAL
+═══════════════════════════════════════════════════════ -->
+<div id="compareModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Compare institutions">
+  <div class="compare-modal-box" id="compareBox">
+    <div id="compareInner"></div>
+  </div>
+</div>
+
+<!-- Keyboard Shortcuts Modal -->
+<div id="kbdModal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+  <div class="modal-box" style="max-width:520px;">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <h3 style="margin:0;font-size:16px;font-family:'Merriweather',serif;">Keyboard Shortcuts</h3>
+      <button class="modal-btn-secondary" style="padding:6px 10px;" onclick="closeKeyboardHelp()" aria-label="Close shortcuts">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div style="padding:16px 20px;">
+      <table class="cmp-table">
+        <tbody>
+          <tr><td class="cmp-label">/</td><td>Focus institution search</td></tr>
+          <tr><td class="cmp-label">?</td><td>Open this keyboard help</td></tr>
+          <tr><td class="cmp-label">Esc</td><td>Close open modal/dropdown</td></tr>
+          <tr><td class="cmp-label">Enter</td><td>Open selected result card</td></tr>
+          <tr><td class="cmp-label">Ctrl/Cmd + P</td><td>Print current result view</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     COMPARE FLOATING BAR
+═══════════════════════════════════════════════════════ -->
+<div id="compareBar" role="region" aria-label="Comparison tray" aria-live="polite">
+  <div class="cmp-bar-label">
+    <i class="fas fa-balance-scale" aria-hidden="true"></i>
+    Compare
+    <div class="cmp-bar-count" id="compareCount">0</div>
+  </div>
+  <div class="cmp-bar-items" id="compareItems"></div>
+  <div class="cmp-bar-actions">
+    <button class="cmp-clear-btn" onclick="clearAllCompare()">Clear</button>
+    <button class="cmp-go-btn" onclick="openCompareModal()">
+      <i class="fas fa-columns" style="margin-right:5px;" aria-hidden="true"></i> Compare Now
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     BACK TO TOP
+═══════════════════════════════════════════════════════ -->
+<button id="backToTop" class="no-print" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
+<!-- Populate hero state select after script.js loads -->
+<script>
+  (function() {
+    const sel = document.getElementById('hState');
+    if (sel && typeof STATES !== 'undefined') {
+      STATES.forEach(([code, name]) => {
+        const opt = document.createElement('option');
+        opt.value = code;
+        opt.textContent = name;
+        sel.appendChild(opt);
+      });
+    }
+  })();
+</script>
+</body>
+</html>

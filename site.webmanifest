@@ -1,0 +1,17 @@
+{
+  "name": "NCES EduLocator",
+  "short_name": "EduLocator",
+  "description": "Search and compare schools and colleges across the United States.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F4F8",
+  "theme_color": "#1B2D5B",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
